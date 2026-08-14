@@ -2,14 +2,11 @@
     'https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;1,600&display=swap'
 );
 
-
 * {
     box-sizing: border-box;
 }
 
-
 body {
-
     margin: 0;
 
     min-height: 100vh;
@@ -20,13 +17,11 @@ body {
             #ffd9ec 0%,
             transparent 30%
         ),
-
         radial-gradient(
             circle at 85% 20%,
             #e8d9ff 0%,
             transparent 30%
         ),
-
         linear-gradient(
             135deg,
             #fff0f7,
@@ -44,17 +39,15 @@ body {
 }
 
 
-/* DECORATIVE BACKGROUND */
+/* DECORATION */
 
 body::before {
-
     content:
         "✦  ♡  ✧  ♡  ✦  ♡  ✧";
 
     position: fixed;
 
     top: 20px;
-
     left: 0;
 
     width: 100%;
@@ -74,58 +67,30 @@ body::before {
         );
 
     pointer-events: none;
-
-}
-
-
-body::after {
-
-    content: "♡";
-
-    position: fixed;
-
-    right: 5%;
-
-    bottom: 5%;
-
-    font-size: 180px;
-
-    color:
-        rgba(
-            230,
-            150,
-            195,
-            0.08
-        );
-
-    pointer-events: none;
-
 }
 
 
 /* MAIN */
 
 .booth {
-
     width: 100%;
 
     min-height: 100vh;
 
-    padding: 30px 20px;
+    padding:
+        30px 20px;
 
     display: flex;
 
     justify-content: center;
 
     align-items: center;
-
 }
 
 
 /* SCREENS */
 
 .screen {
-
     display: none;
 
     width: 100%;
@@ -141,29 +106,22 @@ body::after {
     align-items: center;
 
     text-align: center;
-
 }
-
 
 .screen.active {
-
     display: flex;
-
 }
 
 
-/* LOGO HEART */
+/* LOGO */
 
 .logo-heart {
-
     width: 75px;
-
     height: 75px;
 
     display: flex;
 
     align-items: center;
-
     justify-content: center;
 
     margin-bottom: 15px;
@@ -189,14 +147,12 @@ body::after {
             180,
             0.35
         );
-
 }
 
 
 /* HEADINGS */
 
 h1 {
-
     margin: 0;
 
     font-family:
@@ -204,11 +160,12 @@ h1 {
         Georgia,
         serif;
 
-    font-size: clamp(
-        48px,
-        8vw,
-        85px
-    );
+    font-size:
+        clamp(
+            48px,
+            8vw,
+            85px
+        );
 
     font-weight: 600;
 
@@ -222,16 +179,12 @@ h1 {
         );
 
     -webkit-background-clip: text;
-
     background-clip: text;
 
     color: transparent;
-
 }
 
-
 h2 {
-
     margin: 10px 0;
 
     font-family:
@@ -239,46 +192,40 @@ h2 {
         Georgia,
         serif;
 
-    font-size: clamp(
-        30px,
-        5vw,
-        52px
-    );
+    font-size:
+        clamp(
+            30px,
+            5vw,
+            52px
+        );
 
     color: #ad5b91;
-
 }
 
 
 /* TEXT */
 
 .tagline {
-
     margin:
         8px 0 30px;
 
     font-size: 20px;
 
     color: #9b7090;
-
 }
 
-
 .choose-text {
-
     margin-bottom: 12px;
 
     font-weight: 600;
 
     color: #82566f;
-
 }
 
 
 /* TEMPLATES */
 
 #templates {
-
     display: flex;
 
     gap: 15px;
@@ -288,14 +235,10 @@ h2 {
     justify-content: center;
 
     margin: 10px 0;
-
 }
 
-
 .template-button {
-
     width: 125px;
-
     height: 95px;
 
     margin: 0;
@@ -330,31 +273,16 @@ h2 {
 
     font-size: 25px;
 
-    backdrop-filter: blur(10px);
-
-    box-shadow:
-        0 8px 25px
-        rgba(
-            200,
-            120,
-            170,
-            0.12
-        );
-
+    cursor: pointer;
 }
 
-
 .template-button span {
-
     font-size: 14px;
 
     font-weight: 700;
-
 }
 
-
 .template-button.active {
-
     background:
         linear-gradient(
             135deg,
@@ -362,8 +290,7 @@ h2 {
             #c69cf4
         );
 
-    border-color:
-        transparent;
+    border-color: transparent;
 
     color: white;
 
@@ -378,22 +305,12 @@ h2 {
             180,
             0.35
         );
-
 }
 
 
-.template-button:hover {
-
-    transform:
-        translateY(-4px);
-
-}
-
-
-/* SELECTED STYLE */
+/* SELECTED */
 
 #selectedStyle {
-
     margin:
         12px 0 25px;
 
@@ -415,20 +332,16 @@ h2 {
     font-size: 14px;
 
     font-weight: 600;
-
 }
 
 
 /* START */
 
 #startButton {
-
     min-width: 280px;
 
     padding:
         20px 50px;
-
-    margin-top: 5px;
 
     border: none;
 
@@ -459,14 +372,12 @@ h2 {
         );
 
     cursor: pointer;
-
 }
 
 
 /* CAMERA TITLE */
 
 .camera-title {
-
     margin-bottom: 15px;
 
     font-family:
@@ -479,26 +390,25 @@ h2 {
     font-style: italic;
 
     color: #b45d91;
-
 }
 
 
 /* CAMERA */
 
 .camera-container {
-
     position: relative;
 
-    /*
-       IMPORTANT:
-       4:3 matches the captured
-       photo ratio.
-    */
+    width:
+        min(
+            90vw,
+            900px
+        );
 
-    width: min(
-        90vw,
-        900px
-    );
+    /*
+       4:3 camera preview.
+       This matches the captured
+       photos.
+    */
 
     aspect-ratio: 4 / 3;
 
@@ -525,40 +435,37 @@ h2 {
             130,
             0.3
         );
-
 }
 
 
 /* VIDEO */
 
 #camera {
-
     width: 100%;
-
     height: 100%;
+
+    /*
+       Cover keeps the camera
+       proportional.
+    */
 
     object-fit: cover;
 
     /*
-       Only the preview is mirrored.
-       The captured image is handled
-       separately in JavaScript.
+       Mirror the preview.
     */
 
     transform:
         scaleX(-1);
-
 }
 
 
 /* COUNTDOWN */
 
 #countdown {
-
     position: absolute;
 
     top: 50%;
-
     left: 50%;
 
     transform:
@@ -567,11 +474,12 @@ h2 {
             -50%
         );
 
-    font-size: clamp(
-        100px,
-        20vw,
-        220px
-    );
+    font-size:
+        clamp(
+            100px,
+            20vw,
+            220px
+        );
 
     font-weight: 900;
 
@@ -587,14 +495,12 @@ h2 {
         );
 
     z-index: 10;
-
 }
 
 
 /* FLASH */
 
 #flash {
-
     position: absolute;
 
     inset: 0;
@@ -606,14 +512,12 @@ h2 {
     z-index: 20;
 
     pointer-events: none;
-
 }
 
 
 /* STATUS */
 
 #status {
-
     margin:
         18px 0 5px;
 
@@ -622,23 +526,12 @@ h2 {
     font-weight: 600;
 
     color: #9d5d82;
-
 }
 
 
 /* CAMERA BUTTON */
 
-.camera-controls {
-
-    display: flex;
-
-    justify-content: center;
-
-}
-
-
 #switchCameraButton {
-
     padding:
         12px 25px;
 
@@ -660,33 +553,35 @@ h2 {
 
     font-size: 15px;
 
+    cursor: pointer;
 }
 
 
 /* RESULT */
 
 .result-decoration {
-
     font-size: 25px;
 
     letter-spacing: 8px;
-
 }
 
-
 .result-subtitle {
-
     margin-top: 0;
 
     color: #9d708c;
 
     font-size: 17px;
-
 }
 
 
-#result {
+/*
+   PHOTO STRIP
 
+   Keep the natural ratio.
+   Never stretch it.
+*/
+
+#result {
     margin:
         20px 0 25px;
 
@@ -710,24 +605,26 @@ h2 {
             145,
             0.15
         );
-
 }
 
-
 #result img {
-
     display: block;
 
-    /*
-       Never stretch the strip.
-    */
-
-    width: min(
-        320px,
-        75vw
-    );
+    width:
+        min(
+            320px,
+            75vw
+        );
 
     height: auto;
+
+    /*
+       Prevent distortion.
+    */
+
+    object-fit: contain;
+
+    aspect-ratio: auto;
 
     border-radius: 4px;
 
@@ -739,32 +636,40 @@ h2 {
             110,
             0.3
         );
-
 }
 
 
 /* RESULT BUTTONS */
 
 .result-buttons {
-
     display: flex;
 
     flex-wrap: wrap;
 
     justify-content: center;
 
+    gap: 5px;
 }
 
 
-#printButton,
-#restartButton {
+/* SAVE */
 
+#saveButton {
     border: none;
 
     border-radius: 50px;
 
     padding:
-        16px 30px;
+        17px 32px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ff5fa8,
+            #b778e6
+        );
+
+    color: white;
 
     font-size: 17px;
 
@@ -772,24 +677,56 @@ h2 {
 
     cursor: pointer;
 
+    box-shadow:
+        0 10px 25px
+        rgba(
+            210,
+            110,
+            180,
+            0.3
+        );
 }
 
+
+/* PRINT */
 
 #printButton {
+    border: none;
+
+    border-radius: 50px;
+
+    padding:
+        17px 32px;
 
     background:
-        linear-gradient(
-            135deg,
-            #ff76b5,
-            #c18ae9
+        rgba(
+            255,
+            255,
+            255,
+            0.8
         );
 
-    color: white;
+    color: #925978;
 
+    font-size: 17px;
+
+    font-weight: 700;
+
+    cursor: pointer;
 }
 
 
+/* RESTART */
+
 #restartButton {
+    border:
+        2px solid
+        #edc2dc;
+
+    border-radius: 50px;
+
+    padding:
+        17px 32px;
 
     background:
         rgba(
@@ -801,55 +738,51 @@ h2 {
 
     color: #925978;
 
-    border:
-        2px solid
-        #edc2dc;
+    font-size: 17px;
 
+    font-weight: 700;
+
+    cursor: pointer;
 }
 
 
-/* MOBILE / IPAD */
+/* SAVE MESSAGE */
+
+#saveMessage {
+    min-height: 20px;
+
+    margin-top: 12px;
+
+    color: #a25d83;
+
+    font-size: 14px;
+
+    font-weight: 600;
+}
+
+
+/* MOBILE */
 
 @media (max-width: 600px) {
 
     .booth {
-
         padding: 15px;
-
     }
-
 
     .screen {
-
         min-height: 90vh;
-
     }
-
 
     h1 {
-
         font-size: 48px;
-
     }
-
 
     .template-button {
-
         width: 105px;
-
         height: 85px;
-
     }
 
-
-    /*
-       Keep 4:3 on phones.
-       This prevents the preview
-       from becoming too tall.
-    */
-
     .camera-container {
-
         width: 94vw;
 
         max-width: 600px;
@@ -859,27 +792,29 @@ h2 {
         border-width: 5px;
 
         border-radius: 18px;
-
     }
 
+    #result img {
+        width: min(
+            85vw,
+            320px
+        );
+
+        height: auto;
+    }
 
     .result-buttons {
-
         flex-direction: column;
 
         width: 100%;
 
         align-items: center;
-
     }
 
-
     .result-buttons button {
-
         width: 90vw;
 
         max-width: 350px;
-
     }
 
 }
@@ -894,14 +829,27 @@ h2 {
 ) {
 
     .camera-container {
-
-        width: min(
-            88vw,
-            850px
-        );
+        width:
+            min(
+                88vw,
+                850px
+            );
 
         aspect-ratio: 4 / 3;
+    }
 
+}
+
+
+/*
+   ON PHONES AND IPADS:
+   printing isn't necessary.
+*/
+
+@media (max-width: 1100px) {
+
+    #printButton {
+        display: none;
     }
 
 }
