@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Ronah’s Booth 💕</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="sparkles"></div>
+
+    <main class="booth">
+
+        <!-- START SCREEN -->
+
+        <section id="startScreen" class="screen active">
+
+            <div class="logo-heart">
+                ♡
+            </div>
+
+            <h1>Ronah’s Booth</h1>
+
+            <p class="tagline">
+                ✨ Make memories ✨
+            </p>
+
+            <p class="choose-text">
+                Choose your vibe 💕
+            </p>
+
+            <div id="templates">
+
+                <button
+                    class="template-button active"
+                    data-template="classic">
+
+                    🤍
+                    <span>Classic</span>
+
+                </button>
+
+                <button
+                    class="template-button"
+                    data-template="party">
+
+                    🎀
+                    <span>Party</span>
+
+                </button>
+
+                <button
+                    class="template-button"
+                    data-template="elegant">
+
+                    🌸
+                    <span>Elegant</span>
+
+                </button>
+
+            </div>
+
+            <p id="selectedStyle">
+                Selected: Classic 🤍
+            </p>
+
+            <button id="startButton">
+                <span>📸</span>
+                START
+                <span>💕</span>
+            </button>
+
+        </section>
+
+
+        <!-- CAMERA SCREEN -->
+
+        <section id="cameraScreen" class="screen">
+
+            <div class="camera-title">
+                <span>💕</span>
+                Ronah’s Booth
+                <span>💕</span>
+            </div>
+
+            <div class="camera-container">
+
+                <video
+                    id="camera"
+                    autoplay
+                    playsinline>
+                </video>
+
+                <div id="countdown"></div>
+
+                <div id="flash"></div>
+
+            </div>
+
+            <p id="status">
+                Get ready, beautiful! ✨
+            </p>
+
+            <div class="camera-controls">
+
+                <button id="switchCameraButton">
+                    🔄 Switch Camera
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- RESULT SCREEN -->
+
+        <section id="resultScreen" class="screen">
+
+            <div class="result-decoration">
+                ✨ 💕 ✨
+            </div>
+
+            <h2>
+                Your memories are ready! 💗
+            </h2>
+
+            <p class="result-subtitle">
+                A little piece of happiness to keep forever ✨
+            </p>
+
+            <div id="result"></div>
+
+            <div class="result-buttons">
+
+                <button id="printButton">
+                    🖨️ Print My Strip
+                </button>
+
+                <button id="restartButton">
+                    📸 Take Another
+                </button>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <script src="app.js"></script>
+
+</body>
+
+</html>
