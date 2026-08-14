@@ -3,7 +3,10 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    >
 
     <title>Ronah’s Booth 💕</title>
 
@@ -11,8 +14,6 @@
 </head>
 
 <body>
-
-    <div class="sparkles"></div>
 
     <main class="booth">
 
@@ -38,29 +39,26 @@
 
                 <button
                     class="template-button active"
-                    data-template="classic">
-
+                    data-template="classic"
+                >
                     🤍
                     <span>Classic</span>
-
                 </button>
 
                 <button
                     class="template-button"
-                    data-template="party">
-
+                    data-template="party"
+                >
                     🎀
                     <span>Party</span>
-
                 </button>
 
                 <button
                     class="template-button"
-                    data-template="elegant">
-
+                    data-template="elegant"
+                >
                     🌸
                     <span>Elegant</span>
-
                 </button>
 
             </div>
@@ -70,9 +68,7 @@
             </p>
 
             <button id="startButton">
-                <span>📸</span>
-                START
-                <span>💕</span>
+                📸 START 💕
             </button>
 
         </section>
@@ -93,8 +89,8 @@
                 <video
                     id="camera"
                     autoplay
-                    playsinline>
-                </video>
+                    playsinline
+                ></video>
 
                 <div id="countdown"></div>
 
@@ -137,20 +133,25 @@
 
             <div class="result-buttons">
 
+                <button id="saveButton">
+                    💾 SAVE PHOTO STRIP
+                </button>
+
                 <button id="printButton">
-                    🖨️ Print My Strip
+                    🖨️ PRINT PHOTO STRIP
                 </button>
 
                 <button id="restartButton">
-                    📸 Take Another
+                    📸 TAKE ANOTHER
                 </button>
 
             </div>
 
+            <p id="saveMessage"></p>
+
         </section>
 
     </main>
-
 
     <script src="app.js"></script>
 
