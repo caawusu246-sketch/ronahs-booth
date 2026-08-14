@@ -174,7 +174,20 @@ async function startCamera() {
 
                     video: {
                         facingMode:
-                            facingMode
+                            facingMode,
+
+                        /*
+                           Prefer a good quality
+                           camera image.
+                        */
+
+                        width: {
+                            ideal: 1920
+                        },
+
+                        height: {
+                            ideal: 1080
+                        }
                     },
 
                     audio: false
@@ -190,7 +203,7 @@ async function startCamera() {
 
 
         status.textContent =
-            "Get ready!";
+            "Get ready, beautiful! ✨";
 
 
         await wait(1000);
@@ -264,7 +277,15 @@ async function switchCamera() {
 
                     video: {
                         facingMode:
-                            facingMode
+                            facingMode,
+
+                        width: {
+                            ideal: 1920
+                        },
+
+                        height: {
+                            ideal: 1080
+                        }
                     },
 
                     audio: false
@@ -377,6 +398,16 @@ function countdownTimer() {
 
 /* -------------------------
    CAPTURE PHOTO
+-------------------------
+
+   IMPORTANT:
+
+   We crop the camera image to
+   exactly 4:3 instead of stretching
+   it into 4:3.
+
+   This keeps people looking
+   completely normal.
 ------------------------- */
 
 function capturePhoto() {
@@ -387,11 +418,95 @@ function capturePhoto() {
         );
 
 
-    canvas.width =
+    /*
+       Our photo strip uses 4:3.
+    */
+
+    const targetRatio =
+        4 / 3;
+
+
+    const videoWidth =
         camera.videoWidth;
 
-    canvas.height =
+    const videoHeight =
         camera.videoHeight;
+
+
+    const videoRatio =
+        videoWidth /
+        videoHeight;
+
+
+    let sourceWidth;
+
+    let sourceHeight;
+
+    let sourceX;
+
+    let sourceY;
+
+
+    /*
+       If the camera image is wider
+       than 4:3, crop the sides.
+    */
+
+    if (
+        videoRatio > targetRatio
+    ) {
+
+        sourceHeight =
+            videoHeight;
+
+        sourceWidth =
+            videoHeight *
+            targetRatio;
+
+        sourceX =
+            (
+                videoWidth -
+                sourceWidth
+            ) / 2;
+
+        sourceY = 0;
+
+    }
+
+
+    /*
+       If the camera image is taller
+       than 4:3, crop the top/bottom.
+    */
+
+    else {
+
+        sourceWidth =
+            videoWidth;
+
+        sourceHeight =
+            videoWidth /
+            targetRatio;
+
+        sourceX = 0;
+
+        sourceY =
+            (
+                videoHeight -
+                sourceHeight
+            ) / 2;
+
+    }
+
+
+    /*
+       Final photo size.
+       600 x 450 = perfect 4:3.
+    */
+
+    canvas.width = 600;
+
+    canvas.height = 450;
 
 
     const context =
@@ -400,7 +515,9 @@ function capturePhoto() {
         );
 
 
-    /* Mirror selfie camera */
+    /*
+       Mirror ONLY the front camera.
+    */
 
     if (
         facingMode === "user"
@@ -419,12 +536,25 @@ function capturePhoto() {
     }
 
 
+    /*
+       Draw the cropped image.
+       Nothing is stretched.
+    */
+
     context.drawImage(
+
         camera,
+
+        sourceX,
+        sourceY,
+        sourceWidth,
+        sourceHeight,
+
         0,
         0,
         canvas.width,
         canvas.height
+
     );
 
 
