@@ -17,6 +17,12 @@ const restartButton =
 const printButton =
     document.getElementById("printButton");
 
+const saveButton =
+    document.getElementById("saveButton");
+
+const saveMessage =
+    document.getElementById("saveMessage");
+
 const switchCameraButton =
     document.getElementById(
         "switchCameraButton"
@@ -88,11 +94,9 @@ templateButtons.forEach(button => {
 
             });
 
-
             button.classList.add(
                 "active"
             );
-
 
             selectedTemplate =
                 button.dataset.template;
@@ -154,6 +158,8 @@ async function startCamera() {
 
         result.innerHTML = "";
 
+        saveMessage.textContent = "";
+
 
         startScreen.classList.remove(
             "active"
@@ -173,13 +179,9 @@ async function startCamera() {
                 .getUserMedia({
 
                     video: {
+
                         facingMode:
                             facingMode,
-
-                        /*
-                           Prefer a good quality
-                           camera image.
-                        */
 
                         width: {
                             ideal: 1920
@@ -188,6 +190,7 @@ async function startCamera() {
                         height: {
                             ideal: 1080
                         }
+
                     },
 
                     audio: false
@@ -276,6 +279,7 @@ async function switchCamera() {
                 .getUserMedia({
 
                     video: {
+
                         facingMode:
                             facingMode,
 
@@ -286,6 +290,7 @@ async function switchCamera() {
                         height: {
                             ideal: 1080
                         }
+
                     },
 
                     audio: false
@@ -380,10 +385,8 @@ function countdownTimer() {
                         timer
                     );
 
-
                     countdown.textContent =
                         "";
-
 
                     resolve();
 
@@ -400,14 +403,11 @@ function countdownTimer() {
    CAPTURE PHOTO
 -------------------------
 
-   IMPORTANT:
+   The camera image is CROPPED
+   to 4:3.
 
-   We crop the camera image to
-   exactly 4:3 instead of stretching
-   it into 4:3.
+   It is NOT stretched.
 
-   This keeps people looking
-   completely normal.
 ------------------------- */
 
 function capturePhoto() {
@@ -417,10 +417,6 @@ function capturePhoto() {
             "canvas"
         );
 
-
-    /*
-       Our photo strip uses 4:3.
-    */
 
     const targetRatio =
         4 / 3;
@@ -448,8 +444,8 @@ function capturePhoto() {
 
 
     /*
-       If the camera image is wider
-       than 4:3, crop the sides.
+       Camera wider than 4:3:
+       crop the left/right.
     */
 
     if (
@@ -473,10 +469,9 @@ function capturePhoto() {
 
     }
 
-
     /*
-       If the camera image is taller
-       than 4:3, crop the top/bottom.
+       Camera taller than 4:3:
+       crop the top/bottom.
     */
 
     else {
@@ -500,8 +495,8 @@ function capturePhoto() {
 
 
     /*
-       Final photo size.
-       600 x 450 = perfect 4:3.
+       Final photo:
+       600 x 450 = 4:3.
     */
 
     canvas.width = 600;
@@ -516,7 +511,11 @@ function capturePhoto() {
 
 
     /*
-       Mirror ONLY the front camera.
+       Front camera:
+       mirror the actual photo.
+
+       Rear camera:
+       don't mirror it.
     */
 
     if (
@@ -536,22 +535,19 @@ function capturePhoto() {
     }
 
 
-    /*
-       Draw the cropped image.
-       Nothing is stretched.
-    */
-
     context.drawImage(
 
         camera,
 
         sourceX,
         sourceY,
+
         sourceWidth,
         sourceHeight,
 
         0,
         0,
+
         canvas.width,
         canvas.height
 
@@ -723,6 +719,12 @@ async function createPhotoStrip() {
             );
 
 
+        /*
+           The photos are already
+           4:3, so this does not
+           stretch them.
+        */
+
         context.drawImage(
             image,
             padding,
@@ -742,8 +744,7 @@ async function createPhotoStrip() {
             context.strokeStyle =
                 "#222222";
 
-            context.lineWidth =
-                6;
+            context.lineWidth = 6;
 
         }
 
@@ -756,8 +757,7 @@ async function createPhotoStrip() {
             context.strokeStyle =
                 "#ffffff";
 
-            context.lineWidth =
-                4;
+            context.lineWidth = 4;
 
         }
 
@@ -770,8 +770,7 @@ async function createPhotoStrip() {
             context.strokeStyle =
                 "#b59b6a";
 
-            context.lineWidth =
-                5;
+            context.lineWidth = 5;
 
         }
 
@@ -864,7 +863,7 @@ async function createPhotoStrip() {
         "center";
 
 
-    /* TITLE FONT */
+    /* TITLE */
 
     if (
         selectedTemplate ===
@@ -934,8 +933,7 @@ async function createPhotoStrip() {
         context.strokeStyle =
             "#b59b6a";
 
-        context.lineWidth =
-            12;
+        context.lineWidth = 12;
 
 
         context.strokeRect(
@@ -958,8 +956,7 @@ async function createPhotoStrip() {
         context.strokeStyle =
             "#222222";
 
-        context.lineWidth =
-            8;
+        context.lineWidth = 8;
 
 
         context.strokeRect(
@@ -982,8 +979,7 @@ async function createPhotoStrip() {
         context.strokeStyle =
             "#ffffff";
 
-        context.lineWidth =
-            8;
+        context.lineWidth = 8;
 
 
         context.setLineDash([
@@ -1005,7 +1001,7 @@ async function createPhotoStrip() {
     }
 
 
-    /* SAVE STRIP */
+    /* SAVE */
 
     photoStrip =
         canvas.toDataURL(
@@ -1014,7 +1010,7 @@ async function createPhotoStrip() {
         );
 
 
-    /* SHOW STRIP */
+    /* SHOW */
 
     result.innerHTML = "";
 
@@ -1027,6 +1023,10 @@ async function createPhotoStrip() {
 
     image.src =
         photoStrip;
+
+
+    image.alt =
+        "Ronah's Booth Photo Strip";
 
 
     result.appendChild(
@@ -1070,6 +1070,170 @@ function loadImage(src) {
 
 
 /* -------------------------
+   SAVE PHOTO STRIP
+------------------------- */
+
+saveButton.addEventListener(
+    "click",
+    savePhotoStrip
+);
+
+
+async function savePhotoStrip() {
+
+    if (!photoStrip) {
+
+        return;
+
+    }
+
+
+    saveMessage.textContent =
+        "Preparing your photo strip... 💕";
+
+
+    try {
+
+        /*
+           Convert the photo strip
+           into a real image file.
+        */
+
+        const response =
+            await fetch(
+                photoStrip
+            );
+
+
+        const blob =
+            await response.blob();
+
+
+        const file =
+            new File(
+                [blob],
+                "Ronahs-Booth-Photo-Strip.jpg",
+                {
+                    type:
+                        "image/jpeg"
+                }
+            );
+
+
+        /*
+           iPhone / iPad:
+           open the native Share menu.
+
+           The user can choose
+           "Save Image".
+        */
+
+        if (
+            navigator.share &&
+            navigator.canShare &&
+            navigator.canShare({
+                files: [file]
+            })
+        ) {
+
+            await navigator.share({
+
+                files: [file],
+
+                title:
+                    "Ronah’s Booth 💕",
+
+                text:
+                    "My Ronah’s Booth photo strip 💕"
+
+            });
+
+
+            saveMessage.textContent =
+                "Saved! 💕";
+
+            return;
+
+        }
+
+
+        /*
+           Fallback for browsers
+           that support normal downloads.
+        */
+
+        const link =
+            document.createElement(
+                "a"
+            );
+
+
+        link.href =
+            URL.createObjectURL(
+                blob
+            );
+
+
+        link.download =
+            "Ronahs-Booth-Photo-Strip.jpg";
+
+
+        document.body.appendChild(
+            link
+        );
+
+
+        link.click();
+
+
+        link.remove();
+
+
+        URL.revokeObjectURL(
+            link.href
+        );
+
+
+        saveMessage.textContent =
+            "Photo strip saved! 💕";
+
+
+    } catch (error) {
+
+        /*
+           If the user closes the
+           iOS share menu, don't show
+           an error.
+        */
+
+        if (
+            error.name ===
+            "AbortError"
+        ) {
+
+            saveMessage.textContent =
+                "";
+
+            return;
+
+        }
+
+
+        console.error(
+            "Save failed:",
+            error
+        );
+
+
+        saveMessage.textContent =
+            "Tap and hold the photo strip to save it 💕";
+
+    }
+
+}
+
+
+/* -------------------------
    PRINT
 ------------------------- */
 
@@ -1098,19 +1262,14 @@ function printPhotoStrip() {
             <style>
 
                 body {
-
                     margin: 0;
-
                     display: flex;
-
                     justify-content: center;
-
                 }
 
                 img {
-
                     width: 4in;
-
+                    height: auto;
                 }
 
             </style>
@@ -1159,6 +1318,9 @@ restartButton.addEventListener(
         startScreen.classList.add(
             "active"
         );
+
+        saveMessage.textContent =
+            "";
 
     }
 );
