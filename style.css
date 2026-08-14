@@ -44,13 +44,12 @@ body {
 }
 
 
-/* -------------------------
-   DECORATIVE BACKGROUND
-------------------------- */
+/* DECORATIVE BACKGROUND */
 
 body::before {
 
-    content: "✦  ♡  ✧  ♡  ✦  ♡  ✧";
+    content:
+        "✦  ♡  ✧  ♡  ✦  ♡  ✧";
 
     position: fixed;
 
@@ -66,12 +65,13 @@ body::before {
 
     letter-spacing: 35px;
 
-    color: rgba(
-        220,
-        130,
-        175,
-        0.25
-    );
+    color:
+        rgba(
+            220,
+            130,
+            175,
+            0.25
+        );
 
     pointer-events: none;
 
@@ -90,21 +90,20 @@ body::after {
 
     font-size: 180px;
 
-    color: rgba(
-        230,
-        150,
-        195,
-        0.08
-    );
+    color:
+        rgba(
+            230,
+            150,
+            195,
+            0.08
+        );
 
     pointer-events: none;
 
 }
 
 
-/* -------------------------
-   MAIN
-------------------------- */
+/* MAIN */
 
 .booth {
 
@@ -123,9 +122,7 @@ body::after {
 }
 
 
-/* -------------------------
-   SCREENS
-------------------------- */
+/* SCREENS */
 
 .screen {
 
@@ -155,9 +152,7 @@ body::after {
 }
 
 
-/* -------------------------
-   LOGO HEART
-------------------------- */
+/* LOGO HEART */
 
 .logo-heart {
 
@@ -198,9 +193,7 @@ body::after {
 }
 
 
-/* -------------------------
-   HEADINGS
-------------------------- */
+/* HEADINGS */
 
 h1 {
 
@@ -257,9 +250,7 @@ h2 {
 }
 
 
-/* -------------------------
-   TEXT
-------------------------- */
+/* TEXT */
 
 .tagline {
 
@@ -284,9 +275,7 @@ h2 {
 }
 
 
-/* -------------------------
-   TEMPLATES
-------------------------- */
+/* TEMPLATES */
 
 #templates {
 
@@ -401,9 +390,7 @@ h2 {
 }
 
 
-/* -------------------------
-   SELECTED STYLE
-------------------------- */
+/* SELECTED STYLE */
 
 #selectedStyle {
 
@@ -432,9 +419,7 @@ h2 {
 }
 
 
-/* -------------------------
-   START BUTTON
-------------------------- */
+/* START */
 
 #startButton {
 
@@ -475,34 +460,10 @@ h2 {
 
     cursor: pointer;
 
-    transition:
-        transform 0.2s,
-        box-shadow 0.2s;
-
 }
 
 
-#startButton:hover {
-
-    transform:
-        translateY(-4px)
-        scale(1.03);
-
-    box-shadow:
-        0 18px 40px
-        rgba(
-            210,
-            110,
-            180,
-            0.45
-        );
-
-}
-
-
-/* -------------------------
-   CAMERA TITLE
-------------------------- */
+/* CAMERA TITLE */
 
 .camera-title {
 
@@ -522,20 +483,24 @@ h2 {
 }
 
 
-/* -------------------------
-   CAMERA
-------------------------- */
+/* CAMERA */
 
 .camera-container {
 
     position: relative;
 
+    /*
+       IMPORTANT:
+       4:3 matches the captured
+       photo ratio.
+    */
+
     width: min(
         90vw,
-        1000px
+        900px
     );
 
-    aspect-ratio: 16 / 9;
+    aspect-ratio: 4 / 3;
 
     background: #211820;
 
@@ -573,6 +538,12 @@ h2 {
     height: 100%;
 
     object-fit: cover;
+
+    /*
+       Only the preview is mirrored.
+       The captured image is handled
+       separately in JavaScript.
+    */
 
     transform:
         scaleX(-1);
@@ -639,9 +610,7 @@ h2 {
 }
 
 
-/* -------------------------
-   STATUS
-------------------------- */
+/* STATUS */
 
 #status {
 
@@ -657,9 +626,7 @@ h2 {
 }
 
 
-/* -------------------------
-   CAMERA BUTTON
-------------------------- */
+/* CAMERA BUTTON */
 
 .camera-controls {
 
@@ -696,9 +663,7 @@ h2 {
 }
 
 
-/* -------------------------
-   RESULT
-------------------------- */
+/* RESULT */
 
 .result-decoration {
 
@@ -753,6 +718,10 @@ h2 {
 
     display: block;
 
+    /*
+       Never stretch the strip.
+    */
+
     width: min(
         320px,
         75vw
@@ -774,9 +743,7 @@ h2 {
 }
 
 
-/* -------------------------
-   RESULT BUTTONS
-------------------------- */
+/* RESULT BUTTONS */
 
 .result-buttons {
 
@@ -819,15 +786,6 @@ h2 {
 
     color: white;
 
-    box-shadow:
-        0 10px 25px
-        rgba(
-            210,
-            110,
-            180,
-            0.25
-        );
-
 }
 
 
@@ -850,9 +808,7 @@ h2 {
 }
 
 
-/* -------------------------
-   MOBILE
-------------------------- */
+/* MOBILE / IPAD */
 
 @media (max-width: 600px) {
 
@@ -886,9 +842,19 @@ h2 {
     }
 
 
+    /*
+       Keep 4:3 on phones.
+       This prevents the preview
+       from becoming too tall.
+    */
+
     .camera-container {
 
-        width: 95vw;
+        width: 94vw;
+
+        max-width: 600px;
+
+        aspect-ratio: 4 / 3;
 
         border-width: 5px;
 
@@ -913,6 +879,28 @@ h2 {
         width: 90vw;
 
         max-width: 350px;
+
+    }
+
+}
+
+
+/* IPAD */
+
+@media (
+    min-width: 601px
+) and (
+    max-width: 1100px
+) {
+
+    .camera-container {
+
+        width: min(
+            88vw,
+            850px
+        );
+
+        aspect-ratio: 4 / 3;
 
     }
 
